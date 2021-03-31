@@ -2,7 +2,7 @@ module.exports = [
     {
         text: "SUMMON_LAFA",
         messages: [
-            , "Please don't summon Lafa when it's unneccesary, the man is very busy."
+            "Please don't summon Lafa when it's unneccesary, the man is very busy."
             , "dev ded"
             , "call the SEC, now!!!"
         ]
