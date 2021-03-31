@@ -1,0 +1,19 @@
+{
+  "name": "dea-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "dev": "node-dev ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bottleneck": "^2.19.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "node-telegram-bot-api": "^0.52.0"
+  }
+}
