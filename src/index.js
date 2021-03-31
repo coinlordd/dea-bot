@@ -5,13 +5,14 @@ const dotenv = require("dotenv").config()
 const TOKEN = process.env.TOKEN
 const PRICE_CHAT_ID = process.env.PRICE_CHAT_ID
 const TEST_CHAT_ID = process.env.TEST_CHAT_ID
+const PORT = process.env.PORT || 3000
 
 const Bot = new TelegramBot( TOKEN, { polling: true } )
 const { Queue } = require("./queue")
 const COMMANDS = require("./commands")
 
-app.listen(process.env.PORT || 3000, () => {
-    console.log('Server listening...');
+app.listen(PORT, () => {
+    console.log(`Server listening on port ${PORT}`);
 })
 
 const sendMessage = ({ chat_id, message, options} = {}) => {

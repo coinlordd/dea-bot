@@ -22,7 +22,7 @@ module.exports = [
             , "I wouldn't say it's going to 0, but it's definitely an asymptotic function"
             , "If that happens; all crypto markets are most likely to go to 0. Do you want that to happen, anon?"
             , "How do I short this?"
-            , "Go on then, I darw you to join this channel and restate your statement: https://discord.com/invite/AEdUHzt"
+            , "Go on then, I dare you to join this channel and restate your statement: https://discord.com/invite/AEdUHzt"
         ]
     },
     {
