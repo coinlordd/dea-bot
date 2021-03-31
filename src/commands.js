@@ -2,10 +2,9 @@ module.exports = [
     {
         text: "SUMMON_LAFA",
         messages: [
-            "@Lafayettetabor I Summon Thee"
-            , "WHERE ARE YOU @Lafayettetabor"
-            , "No, I won't summon him this time"
+            , "Please don't summon Lafa when it's unneccesary, the man is very busy."
             , "dev ded"
+            , "call the SEC, now!!!"
         ]
     },
     {
