@@ -1,6 +1,7 @@
 const TelegramBot = require("node-telegram-bot-api")
 const app = require("express")()
 const dotenv = require("dotenv").config()
+const fs = require("fs")
 
 const TOKEN = process.env.TOKEN
 const PRICE_CHAT_ID = process.env.PRICE_CHAT_ID
@@ -30,6 +31,21 @@ const sendMessage = ({ chat_id, message, options} = {}) => {
     }
 }
 
+const sendVideo = ({ chat_id, video } = {}) => {
+  try {
+    if (!chat_id || !video) throw new Error("Params are missing")
+    Queue.schedule(() => {
+      try {
+        Bot.sendVideo(chat_id, video)
+      } catch (err) {
+        throw err
+      }
+    });
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 const reg = (str) => {
   return new RegExp("/"+str);
 }
@@ -50,6 +66,15 @@ Bot.onText(/\/help/, (msg) => {
         message: message,
         options: { parse_mode: "HTML"}
     });
+})
+
+Bot.onText(/\/POOL/, async (msg) => {
+  const chat_id = msg.chat.id;
+  if (chat_id != PRICE_CHAT_ID && chat_id != TEST_CHAT_ID) return
+  sendVideo({
+    chat_id: chat_id,
+    video: await fs.readFileSync(`${__dirname}/assets/pool.mp4`),
+  });
 })
 
 COMMANDS.forEach(command => {
