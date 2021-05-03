@@ -67,4 +67,10 @@ module.exports = [
             , "tree fiddy"
         ]
     },
+    {
+        text: "RINGTONE",
+        messages: [
+            "https://www.youtube.com/watch?v=0KSOMA3QBU0"
+        ]
+    }
 ]
