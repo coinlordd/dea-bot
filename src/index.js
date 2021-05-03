@@ -17,26 +17,26 @@ app.listen(PORT, () => {
 })
 
 const sendMessage = ({ chat_id, message, options} = {}) => {
-    try {
-        if (!chat_id || !message || !options) throw new Error("Params are missing")
-        Queue.schedule(() => {
-            try {
-                Bot.sendMessage(chat_id, message, options)
-            } catch (err) {
-                throw err
-            }
-        });
-    } catch (err) {
-        console.error(err);
-    }
-}
-
-const sendVideo = ({ chat_id, video } = {}) => {
   try {
-    if (!chat_id || !video) throw new Error("Params are missing")
+    if (!chat_id || !message || !options) throw new Error("Params are missing")
     Queue.schedule(() => {
       try {
-        Bot.sendVideo(chat_id, video)
+        Bot.sendMessage(chat_id, message, options)
+      } catch (err) {
+        throw err
+      }
+    });
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+const sendVideo = ({ chat_id, video, options } = {}) => {
+  try {
+    if (!chat_id || !video || !options) throw new Error("Params are missing")
+    Queue.schedule(() => {
+      try {
+        Bot.sendVideo(chat_id, video, options)
       } catch (err) {
         throw err
       }
@@ -57,23 +57,28 @@ const randomIntFromInterval = (min, max) => { // min and max included
 Bot.on("polling_error", console.log);
 
 Bot.onText(/\/help/, (msg) => {
-    const chat_id = msg.chat.id;
-    if (chat_id != PRICE_CHAT_ID && chat_id != TEST_CHAT_ID) return
+  const chat_id = msg.chat.id;
+  if (chat_id != PRICE_CHAT_ID && chat_id != TEST_CHAT_ID) return
 
-    const message = COMMANDS.map(command => command.text).join("\n")
-    sendMessage({
-        chat_id: chat_id,
-        message: message,
-        options: { parse_mode: "HTML"}
-    });
+  let commands = COMMANDS.map(command => command.text)
+  let misc = [ "POOL" ]
+
+  const message = commands.concat(misc).join("\n")
+  sendMessage({
+    chat_id: chat_id,
+    message: message,
+    options: { parse_mode: "HTML",  reply_to_message_id: msg.message_id }
+  });
 })
 
 Bot.onText(/\/POOL/, async (msg) => {
   const chat_id = msg.chat.id;
   if (chat_id != PRICE_CHAT_ID && chat_id != TEST_CHAT_ID) return
+
   sendVideo({
     chat_id: chat_id,
     video: await fs.readFileSync(`${__dirname}/assets/pool.mp4`),
+    options: { parse_mode: "HTML",  reply_to_message_id: msg.message_id }
   });
 })
 
