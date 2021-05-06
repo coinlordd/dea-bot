@@ -50,7 +50,6 @@ VIDEOS.forEach(command => {
   Bot.onText(text, (msg) => {
     const { chat_id, message_id } = parseMsg(msg)
     if (chat_id != PRICE_CHAT_ID && chat_id != TEST_CHAT_ID) return
-
     sendVideo({
       chat_id: chat_id,
       id: command.id,

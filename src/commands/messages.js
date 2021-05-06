@@ -70,7 +70,14 @@ module.exports = [
   {
     command: "RINGTONE",
     messages: [
-        "https://www.youtube.com/watch?v=0KSOMA3QBU0"
+      "https://www.youtube.com/watch?v=0KSOMA3QBU0"
     ]
-  }
+  },
+  {
+    command: "MOVIE",
+    messages: [
+      "https://t.me/deuspricechat/109567"
+    ]
+  },
+
 ]
